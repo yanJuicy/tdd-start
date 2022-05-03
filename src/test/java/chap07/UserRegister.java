@@ -1,13 +1,11 @@
-package chap07.user;
+package chap07;
 
 public class UserRegister {
     private WeakPasswordChecker passwordChecker;
     private UserRepository userRepository;
     private EmailNotifier emailNotifier;
 
-    public UserRegister(WeakPasswordChecker passwordChecker,
-                        UserRepository userRepository,
-                        EmailNotifier emailNotifier) {
+    public UserRegister(WeakPasswordChecker passwordChecker, MemoryUserRepository userRepository, EmailNotifier emailNotifier) {
         this.passwordChecker = passwordChecker;
         this.userRepository = userRepository;
         this.emailNotifier = emailNotifier;
@@ -17,10 +15,12 @@ public class UserRegister {
         if (passwordChecker.checkPasswordWeak(pw)) {
             throw new WeakPasswordException();
         }
+
         User user = userRepository.findById(id);
         if (user != null) {
             throw new DupIdException();
         }
+
         userRepository.save(new User(id, pw, email));
 
         emailNotifier.sendRegisterEmail(email);

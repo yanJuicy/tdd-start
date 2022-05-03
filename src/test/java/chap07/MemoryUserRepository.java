@@ -1,4 +1,4 @@
-package chap07.user;
+package chap07;
 
 import java.util.HashMap;
 import java.util.Map;

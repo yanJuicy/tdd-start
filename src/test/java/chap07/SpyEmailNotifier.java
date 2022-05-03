@@ -1,4 +1,4 @@
-package chap07.user;
+package chap07;
 
 public class SpyEmailNotifier implements EmailNotifier {
     private boolean called;
